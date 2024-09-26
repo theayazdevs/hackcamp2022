@@ -1,0 +1,176 @@
+<?php
+require 'Views/template/adminHeader.phtml';
+?>
+
+
+<div class="header body-background3">
+	<div class="d-flex justify-content-between">
+		<div class="p-2 align-self-center">
+			<button type="button" id="sidebarCollapse" class="sidebutton-hover sidebutton">
+				<i class="fa fa-align-left"></i>
+				<span>Menu</span>
+			</button>
+		</div>
+		<div class="p-2 align-self-center">
+			<a class="dashboard">Admin Panel</a>
+		</div>
+		<div class="p-2 align-self-center">
+		</div>
+	</div>
+</div>
+<!-- Page Content  -->
+<div id="content">
+
+
+
+
+
+
+
+
+
+	<div class="row ml-3 mr-3">
+
+		<div class="col">
+			<div class="dashboard2"> <a><i class="fa fa-area-chart" aria-hidden="true"></i></a> Statistics</div>
+		</div>
+	</div>
+
+	<div class="row ml-3 mr-3">
+		<div class="col">
+
+			<div class="container py-4">
+				<article class="postcard green3 green">
+					<div class="postcard__text ">
+						<h1 class="postcard__title green "><a href="#">USERS</a></h1>
+						<div class="postcard__bar"></div>
+						<p class="head-1">Users</p>
+						<p class="number"> <?php echo $usersCount ?> Total users</p>
+						<button class="bn630-hover bn28"><a href="userList.php">View All Users</a></button>
+						<!-- <i class="fa fa-line-chart box-icon"></i> -->
+					</div>
+				</article>
+			</div>
+		</div>
+		<div class="col">
+
+
+			<div class="container py-4">
+				<article class="postcard red3 red">
+					<div class="postcard__text ">
+						<h1 class="postcard__title green "><a href="#">SURVEYS</a></h1>
+						<div class="postcard__bar"></div>
+						<p class="head-1">Surveys</p>
+						<p class="number"><?php echo $surveysCount ?> Total Surveys</p>
+						<!-- <i class="fa fa-line-chart box-icon"></i> -->
+						<button class="bn632-hover bn28"><a href="https://docs.google.com/spreadsheets/d/1VD7tZu52TIyZvpvgdZ-5dPxFWUwn4LCzrWkv3LfkNow/edit?usp=sharing">View Responses</a></button>
+					</div>
+				</article>
+			</div>
+		</div>
+		<div class="col">
+
+
+			<div class="container py-4">
+				<article class="postcard blue3 blue">
+					<div class="postcard__text ">
+						<h1 class="postcard__title green "><a href="#">POLLS</a></h1>
+						<div class="postcard__bar"></div>
+						<p class="head-1">Polls</p>
+						<p class="number"><?php echo $pollsCount ?> Total Polls</p>
+						<!-- <i class="fa fa-line-chart box-icon"></i> -->
+						<button class="bn631-hover bn28"><a href="https://docs.google.com/spreadsheets/d/1sreJXKfQVn0OVEp2zqobQkcJ31HqxDctNTwqjnFgWOY/edit#gid=1735785293">View Responses</a></button>
+					</div>
+				</article>
+			</div>
+		</div>
+		<div class="col">
+
+			<div class="container py-4">
+				<article class="postcard green3 green">
+					<div class="postcard__text ">
+						<h1 class="postcard__title green "><a href="#">Prototypes</a></h1>
+						<div class="postcard__bar"></div>
+						<p class="head-1">Prototypes</p>
+						<p class="number"><?php echo $prototypesCount ?> Total Prototypes</p>
+						<button class="bn630-hover bn28"><a href="https://docs.google.com/spreadsheets/d/1IXgViuxVF9OcMpwPqX-b9kKCNJ3-EdNE--elkoLEBNY/edit?usp=sharing">View Responses</a></button>
+						<!-- <i class="fa fa-line-chart box-icon"></i> -->
+					</div>
+				</article>
+			</div>
+		</div>
+		<div class="col">
+
+			<div class="container py-4">
+				<article class="postcard yellow3 yellow">
+					<div class="postcard__text ">
+						<h1 class="postcard__title yellow "><a href="#">DISCUSSIONS</a></h1>
+						<div class="postcard__bar"></div>
+						<p class="head-1">Discussions</p>
+						<p class="number"><?php echo $discussionsCount ?> Total Discussions</p>
+						<button class="bn633-hover bn28"><a href="https://docs.google.com/spreadsheets/d/1NjjhI5FXBrJ-zIYzNcofvG98gKc2RwtfDAmDSK07rG4/edit?usp=sharing">View Responses</a></button>
+						<!-- <i class="fa fa-line-chart box-icon"></i> -->
+					</div>
+				</article>
+			</div>
+		</div>
+		<div class="col">
+
+		</div>
+
+	</div>
+
+
+
+
+
+
+
+
+
+	<!-- jQuery CDN - Slim version (=without AJAX) -->
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+	<!-- Popper.JS -->
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+
+	<!-- Bootstrap JS -->
+
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+			$('#sidebarCollapse').on('click', function() {
+
+				$('#sidebar').toggleClass('active');
+
+			});
+
+		});
+	</script>
+	<script>
+		document.addEventListener("DOMContentLoaded", () => {
+			const rows = document.querySelectorAll("tr[data-href]");
+
+			rows.forEach(row => {
+				row.addEventListener("click", () => {
+					window.location.href = row.dataset.href;
+				});
+			});
+		});
+	</script>
+
+
+
+
+
+
+</div>
+</body>
+
+</html>

@@ -1,0 +1,4 @@
+make sure TEMPLATE folder is set up correctly because some servers are case sensitive
+so T in Tempate should be made bigger or smaller to fit all
+make sure table userExperiment is accepted
+otherwise its just userexperiment, no capital letters

@@ -1,0 +1,369 @@
+<?php
+//echo "Current user id: ".$currenUserObj->getSession()['user_id'];
+    require 'Views/template/header.phtml'
+?>
+    <!-- Page Content  -->
+    <div id="content">
+
+
+
+
+
+
+        <div class="header body-background3">
+            <div class="d-flex justify-content-between">
+                <div class="p-2 align-self-center">
+                    <button type="button" id="sidebarCollapse" class="sidebutton-hover sidebutton">
+                        <i class="fas fa-align-left"></i>
+                        <span>Menu</span>
+                    </button></div>
+                <div class="p-2 align-self-center">
+                    <a class="dashboard" >Dashboard</a></div>
+                <div class="p-2 align-self-center">
+                
+                        <button class="notificationbtn-hover notificationbtn " data-toggle="modal" data-target="#exampleModal">
+                            <i class="fa fa-bell" aria-hidden="true"></i>
+                            <span class="badge badge-light alert-primary"><?php echo $value; ?></span>
+                        </button>
+                        <!-- Button trigger modal 
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+-->
+<!-- Modal -->
+<form method="POST"> 
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Notifications</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <?php
+          if($value!=0){
+                echo '<h4 class="alert-success p-1">The admin has created <strong>'.$value.'</strong> new experiments, Please check these out in the home-page, thanks!</h4>';
+          }
+          else
+          {
+            echo '<h4 class="alert-danger p-1">The admin has not created any new experiments yet, Please keep checking!</h4>';
+          }
+        ?>
+      </div>
+      <div class="modal-footer">
+       
+        
+        <button class="bn631-hover bn28" type="submit" name="notificationB">Mark as read</button>
+       
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mt-4 ml-2 mr-1">
+
+            <div class="col col-md-auto">
+                <a href="surveys.php"><button class="bn632-hover bn28" >Surveys</button></a>
+                <a href="polls.php"><button class="bn631-hover bn28" >Polls</button></a></div>
+            <div class="col col-md-auto">
+                <a href="prototypes.php"><button class="bn630-hover bn28" >Prototypes</button></a>
+                <a href="discussions.php"><button class="bn633-hover bn28" >Discussions</button></a>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="row ml-3 mr-3 dashboard2">
+
+            <div class="col">
+                <div> <a><i class="fa fa-flask" aria-hidden="true"></i></i></a> All Experiments </div>
+                
+            </div>
+            <div class="col-md-auto">
+    </div>
+  <div class="col col-md-auto float-right ml-1 ">
+  <form method="POST" class="form-inline">
+  <div class="input-group ">
+              <input type="text" class="form-control h-100" placeholder="Search"  name="searchTo">
+  </div>
+                <button class="btn" type="submit" name="usersSearch"><i class="fa fa-search" aria-hidden="true"></i></button>
+    </form>
+  </div>
+        </div>
+
+        <div class="row ml-3 mr-3">
+            <?php
+            //echo 'Hello';
+            //$currenUserObj->countExperiment();
+            if($tableShow == true){
+            foreach ($view->ExperimentDataSet as $row) {   
+                if($row->getType()=='Prototype'){
+                    echo '
+            <div class="col">
+                <div class="container py-4">
+                    <article class="postcard green3 green">
+                        <div class="postcard__text ">
+                            <h1 class="postcard__title green "><a href="#">'.$row->getName().'</a></h1>
+                            <div class="postcard__subtitle small">
+                                <time datetime="2020-05-25 12:00:00">
+                                    <i class="fas fa-calendar-alt mr-2"></i>'.$row->getDate().'
+                                </time>
+                            </div>
+                            <div class="postcard__bar"></div>
+                            <div class="postcard__preview-txt">'.$row->getDescription().'</div>
+                            <ul class="postcard__tagbox">
+                                <li class="tag__item"><i class="fas fa-tag mr-2 green2"></i>'.$row->getType().'</li>
+                                <li class="tag__item"><i class="fas fa-clock mr-2"></i>'.$row->getTotalTime().'</li>
+                                <li class="tag__item play green">
+                                    <a href="viewExperiment.php?id=' . $row->getID() . '"><i class="fas fa-play mr-2"></i>Do '.$row->getType().'</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </article></div></div>'; }
+                elseif ($row->getType()=='Survey')
+                {
+                    echo '            <div class="col">
+                <div class="container py-4">
+                    <article class="postcard red3 red">
+                        <div class="postcard__text">
+                            <h1 class="postcard__title red"><a href="#">'.$row->getName().'</a></h1>
+                            <div class="postcard__subtitle small">
+                                <time datetime="2020-05-25 12:00:00">
+                                    <i class="fas fa-calendar-alt mr-2"></i>'.$row->getDate().'
+                                </time>
+                            </div>
+                            <div class="postcard__bar"></div>
+                            <div class="postcard__preview-txt">'.$row->getDescription().'</div>
+                            <ul class="postcard__tagbox">
+                                <li class="tag__item"><i class="fas fa-tag mr-2 red2"></i>'.$row->getType().'</li>
+                                <li class="tag__item"><i class="fas fa-clock mr-2"></i>'.$row->getTotalTime().'</li>
+                                <li class="tag__item play red">
+                                <a href="viewExperiment.php?id=' . $row->getID() . '"><i class="fas fa-play mr-2"></i>Do '.$row->getType().'</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </article></div>
+            </div>';
+                }
+                elseif ($row->getType()=='Poll') {
+                    echo '<div class="col">
+                <div class="container py-4">
+                    <article class="postcard blue3 blue">
+                        <div class="postcard__text">
+                            <h1 class="postcard__title blue"><a href="#">'.$row->getName().'</a></h1>
+                            <div class="postcard__subtitle small">
+                                <time datetime="2020-05-25 12:00:00">
+                                    <i class="fas fa-calendar-alt mr-2"></i>'.$row->getDate().'
+                                </time>
+                            </div>
+                            <div class="postcard__bar"></div>
+                            <div class="postcard__preview-txt">'.$row->getDescription().'</div>
+                            <ul class="postcard__tagbox">
+                                <li class="tag__item"><i class="fas fa-tag mr-2 blue2"></i>'.$row->getType().'</li>
+                                <li class="tag__item"><i class="fas fa-clock mr-2"></i>'.$row->getTotalTime().'</li>
+                                <li class="tag__item play blue">
+                                <a href="viewExperiment.php?id=' . $row->getID() . '"><i class="fas fa-play mr-2"></i>Do '.$row->getType().'</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </article></div></div>';
+                }
+                elseif ($row->getType()=='Discussion') {
+                    echo '<div class="col">
+                <div class="container py-4">
+                    <article class="postcard yellow3 yellow">
+                        <div class="postcard__text">
+                            <h1 class="postcard__title yellow"><a href="#">'.$row->getName().'</a></h1>
+                            <div class="postcard__subtitle small">
+                                <time datetime="2020-05-25 12:00:00">
+                                    <i class="fas fa-calendar-alt mr-2"></i>'.$row->getDate().'
+                                </time>
+                            </div>
+                            <div class="postcard__bar"></div>
+                            <div class="postcard__preview-txt">'.$row->getDescription().'</div>
+                            <ul class="postcard__tagbox">
+                                <li class="tag__item"><i class="fas fa-tag mr-2 yellow2"></i>'.$row->getType().'</li>
+                                <li class="tag__item"><i class="fas fa-clock mr-2"></i>'.$row->getTotalTime().'</li>
+                                <li class="tag__item play yellow">
+                                <a href="viewExperiment.php?id=' . $row->getID() . '"><i class="fas fa-play mr-2"></i>Do '.$row->getType().'</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </article></div>
+            </div>';
+                }
+            }
+        }
+        else 
+            {
+                    if($resultsSearch != 1)
+                    {
+                        foreach ($resultsSearch as $row) {   
+                            if($row['type']=='Prototype'){
+                                echo '
+                        <div class="col">
+                            <div class="container py-4">
+                                <article class="postcard green3 green">
+                                    <div class="postcard__text ">
+                                        <h1 class="postcard__title green "><a href="#">'.$row['name'].'</a></h1>
+                                        <div class="postcard__subtitle small">
+                                            <time datetime="2020-05-25 12:00:00">
+                                                <i class="fas fa-calendar-alt mr-2"></i>'.$row['date'].'
+                                            </time>
+                                        </div>
+                                        <div class="postcard__bar"></div>
+                                        <div class="postcard__preview-txt">'.$row['description'].'</div>
+                                        <ul class="postcard__tagbox">
+                                            <li class="tag__item"><i class="fas fa-tag mr-2 green2"></i>'.$row['type'].'</li>
+                                            <li class="tag__item"><i class="fas fa-clock mr-2"></i>'.$row['totaltime'].'</li>
+                                            <li class="tag__item play green">
+                                                <a href="viewExperiment.php?id=' . $row['id'] . '"><i class="fas fa-play mr-2"></i>Do '.$row['type'].'</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </article></div></div>'; }
+                            elseif ($row['type']=='Survey')
+                            {
+                                echo '            <div class="col">
+                            <div class="container py-4">
+                                <article class="postcard red3 red">
+                                    <div class="postcard__text">
+                                        <h1 class="postcard__title red"><a href="#">'.$row['name'].'</a></h1>
+                                        <div class="postcard__subtitle small">
+                                            <time datetime="2020-05-25 12:00:00">
+                                                <i class="fas fa-calendar-alt mr-2"></i>'.$row['date'].'
+                                            </time>
+                                        </div>
+                                        <div class="postcard__bar"></div>
+                                        <div class="postcard__preview-txt">'.$row['description'].'</div>
+                                        <ul class="postcard__tagbox">
+                                            <li class="tag__item"><i class="fas fa-tag mr-2 red2"></i>'.$row['type'].'</li>
+                                            <li class="tag__item"><i class="fas fa-clock mr-2"></i>'.$row['totaltime'].'</li>
+                                            <li class="tag__item play red">
+                                            <a href="viewExperiment.php?id=' . $row['id'] . '"><i class="fas fa-play mr-2"></i>Do '.$row['type'].'</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </article></div>
+                        </div>';
+                            }
+                            elseif ($row['type']=='Poll') {
+                                echo '<div class="col">
+                            <div class="container py-4">
+                                <article class="postcard blue3 blue">
+                                    <div class="postcard__text">
+                                        <h1 class="postcard__title blue"><a href="#">'.$row['name'].'</a></h1>
+                                        <div class="postcard__subtitle small">
+                                            <time datetime="2020-05-25 12:00:00">
+                                                <i class="fas fa-calendar-alt mr-2"></i>'.$row['date'].'
+                                            </time>
+                                        </div>
+                                        <div class="postcard__bar"></div>
+                                        <div class="postcard__preview-txt">'.$row['description'].'</div>
+                                        <ul class="postcard__tagbox">
+                                            <li class="tag__item"><i class="fas fa-tag mr-2 blue2"></i>'.$row['type'].'</li>
+                                            <li class="tag__item"><i class="fas fa-clock mr-2"></i>'.$row['totaltime'].'</li>
+                                            <li class="tag__item play blue">
+                                            <a href="viewExperiment.php?id=' . $row['id'] . '"><i class="fas fa-play mr-2"></i>Do '.$row['type'].'</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </article></div></div>';
+                            }
+                            elseif ($row['type']=='Discussion') {
+                                echo '<div class="col">
+                            <div class="container py-4">
+                                <article class="postcard yellow3 yellow">
+                                    <div class="postcard__text">
+                                        <h1 class="postcard__title yellow"><a href="#">'.$row['name'].'</a></h1>
+                                        <div class="postcard__subtitle small">
+                                            <time datetime="2020-05-25 12:00:00">
+                                                <i class="fas fa-calendar-alt mr-2"></i>'.$row['date'].'
+                                            </time>
+                                        </div>
+                                        <div class="postcard__bar"></div>
+                                        <div class="postcard__preview-txt">'.$row['description'].'</div>
+                                        <ul class="postcard__tagbox">
+                                            <li class="tag__item"><i class="fas fa-tag mr-2 yellow2"></i>'.$row['type'].'</li>
+                                            <li class="tag__item"><i class="fas fa-clock mr-2"></i>'.$row['totaltime'].'</li>
+                                            <li class="tag__item play yellow">
+                                            <a href="viewExperiment.php?id=' . $row['id'] . '"><i class="fas fa-play mr-2"></i>Do '.$row['type'].'</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </article></div>
+                        </div>';
+                            }
+                        }
+
+                        $tableShow = false;
+
+                    }
+                    else {
+                        echo '<div class="alert alert-danger alert-dismissible d-flex align-items-center fade show">
+                                        <i class="bi-exclamation-octagon-fill"></i>
+                                        <strong class="mx-2">No Results matchin or conatining that word found!</strong>
+                                </div>';
+                                $tableShow = true;
+                    }
+
+            }
+            
+        
+    
+            ?>
+        
+
+        </div>
+
+
+
+
+
+
+        <!-- jQuery CDN - Slim version (=without AJAX) -->
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+        <!-- Popper.JS -->
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+
+        <!-- Bootstrap JS -->
+
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+
+
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+
+                $('#sidebarCollapse').on('click', function () {
+
+                    $('#sidebar').toggleClass('active');
+
+                });
+
+            });
+
+        </script>
+
+
+
+
+
+
+    </div>
+</body>
+
+</html>
